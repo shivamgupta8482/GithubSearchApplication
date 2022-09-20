@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 import { useState } from "react"
 import fetchUsers from "./fetchUsers";
-import KitchenSinkExample from "./Card";
+// import KitchenSinkExample from "./Card";
 import SimpleCard from "./SimpleCard";
 import { SearchGIF } from "./AddGif";
 //import Feature from "./ChakraCard.jsx";
 import axios from "axios";
+import {Input} from "@chakra-ui/react"
 
 
  const Github=()=>{
     const [query,setQuery]=useState("");
-    // const [isError,setIsError] = useState(false);
-    // const [isLoading,setIsLoading]=useState(false);
+     const [isError,setIsError] = useState(false);
+     const [isLoading,setIsLoading]=useState(true);
     const [users,setUsers] = useState([]);
     const [repos,setRepos]=useState([]);
 
@@ -20,33 +21,31 @@ import axios from "axios";
     })
 
 useEffect(()=>{
-    // setIsLoading(true);
-    // setIsError(false);
+     setIsLoading(true);
+     setIsError(false);
     fetchUsers("")
     .then((res)=>{
         setUsers(res.data.items);
+        setIsLoading(false);
     })
     .catch((err)=>{
-        //setIsError(true);
+        setIsError(true);
     })
-    .finally(()=>{
-        // setIsLoading(false);
-    })
+    
 },[]);
 
 const handleSearch=()=>{
-    //setIsLoading(true);
-    //setIsError(false);
+    setIsLoading(true);
+    setIsError(false);
     fetchUsers(query)
     .then((res)=>{
         setUsers(res.data.items);
+        setIsLoading(false);
     })
     .catch((err)=>{
-        //setIsError(true);
+        setIsError(true);
     })
-    .finally(()=>{
-        //setIsLoading(false);
-    })
+  
 }
 const handleShow= async (item)=>{
     try {
@@ -60,26 +59,30 @@ const handleShow= async (item)=>{
 }
 
 return(
-    <>
+    <div >
     <h1>Github</h1>
     <div>
-        <input type="text"
+        <Input type="text"
+        size='sm'
+        htmlSize={12} width='auto'
         value={query}
         onChange={(e)=>setQuery(e.target.value)}
         placeholder="search"
         />
         {console.log(users)}
         <button  onClick={handleSearch}>
-            Search
-            {/* {isLoading?<SearchGIF />:"Search"} */}
+            
+             Search
         </button>
     </div>
-    {/* {isError?<SearchGIF />:null} */}
+   
   
 
     <div>
+   
         {
-            users?.map((item)=>(
+           isLoading || isError || users.length==0 ? <div><SearchGIF /></div>
+           :users?.map((item)=>(
                 <div key={item.id}  onClick={()=>handleShow(item)} >
                { <SimpleCard 
               
@@ -103,7 +106,7 @@ return(
         }
     </div>
 
-    </>
+    </div>
 )
 
 }
