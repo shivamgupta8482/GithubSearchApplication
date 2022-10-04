@@ -52,6 +52,7 @@ const handleShow= async (item)=>{
     try {
         const {data: response} = await axios.get(item.repos_url);
         setRepos(response);
+        console.log(response)
       } catch (error) {
         console.error(error.message);
       }
@@ -83,7 +84,8 @@ return(
    </Center>
   
 
- 
+ <br />
+ <br />
   <SimpleGrid minChildWidth='180px'  spacing='100px' width="80%" style={{margin:"auto"}}>
    
    {
@@ -113,20 +115,7 @@ return(
    }
 </SimpleGrid>
  
-  <Center>
-  <div>
-        {
-            repos?.map((item)=>(
-               <>
-                <li><h3>{item.name}</h3></li>
-                <p>{item.description}</p>
-                <h5>{item.language}</h5>
-           
-               </>
-            ))
-        }
-    </div>
-  </Center>
+ 
 
     </div>
 )
