@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {Github} from "./Github.jsx"
+import {Github} from "./Components/Github"
 function App() {
 
 

@@ -1,5 +1,5 @@
 import { Img } from '@chakra-ui/react';
-import searchPlaceholder from './images/search-item.gif';
+import searchPlaceholder from '../images/search-item.gif';
 
 
 export const SearchGIF = () => {
