@@ -44,7 +44,7 @@ export default function SimpleCard({img,name,repos,handleShow}){
   <br />
 <>
 
-<Button mt={3} ref={btnRef} onClick={onOpen}>
+<Button colorScheme="teal" mt={3} ref={btnRef} onClick={onOpen}>
        Extra Information
       </Button>
 
@@ -94,7 +94,7 @@ export default function SimpleCard({img,name,repos,handleShow}){
 </Center>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
+            <Button colorScheme="blue" onClick={onClose}>Close</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
