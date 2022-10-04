@@ -8,9 +8,13 @@ import { SearchGIF } from "./AddGif";
 import axios from "axios";
 import {Box, Input, Wrap, WrapItem} from "@chakra-ui/react"
 import { Center,Button,SimpleGrid } from "@chakra-ui/react";
+import { useColorMode } from "@chakra-ui/react";
 
 
  const Github=()=>{
+
+    const { colorMode, toggleColorMode } = useColorMode()
+
     const [query,setQuery]=useState("");
      const [isError,setIsError] = useState(false);
      const [isLoading,setIsLoading]=useState(true);
@@ -62,6 +66,15 @@ const handleShow= async (item)=>{
 
 return(
     <div >
+        <br />
+<Center>
+<Button onClick={toggleColorMode}>
+        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+      </Button>
+</Center>
+<br />
+
+
     <Center>
     <h1>Github</h1>
     </Center>
