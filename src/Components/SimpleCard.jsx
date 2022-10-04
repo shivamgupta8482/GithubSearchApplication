@@ -8,8 +8,8 @@ import {
   ModalContent,
   ModalHeader,
   ModalFooter,
-  ModalBody,
-  ModalCloseButton,Heading,SimpleGrid
+  ModalBody,Text,
+  ModalCloseButton,Heading,SimpleGrid,Avatar,AvatarGroup,Wrap
 } from '@chakra-ui/react'
 import { useDisclosure } from "@chakra-ui/react"
 
@@ -18,7 +18,7 @@ import { useDisclosure } from "@chakra-ui/react"
 
 
 
-export default function SimpleCard({img,name,repos,handleShow}){
+export default function SimpleCard({img,name,repos,handleShow,followers,url}){
   const { isOpen, onOpen, onClose } = useDisclosure()
   
 
@@ -40,6 +40,10 @@ export default function SimpleCard({img,name,repos,handleShow}){
       <Center>
       <h1>{name}</h1>
       </Center>
+      <br />
+
+
+
 <Center>
   <br />
 <>
@@ -47,6 +51,11 @@ export default function SimpleCard({img,name,repos,handleShow}){
 <Button colorScheme="teal" mt={3} ref={btnRef} onClick={onOpen}>
        Extra Information
       </Button>
+<br />
+
+
+
+
 
       <Modal
       size="5xl"
@@ -67,10 +76,20 @@ export default function SimpleCard({img,name,repos,handleShow}){
   alt='Dan Abramov' src={img} />
          </Center>
 
+         <br />
+         <Center>
+<Text noOfLines={4}> 
+<a href={url} target="blank">{url}</a>
+  </Text>
+</Center>
+<br />
+      
+
 <Center>
 <Box minChildWidth='180px'  spacing='100px' width="80%" style={{margin:"auto"}}>
   <br />
   <Center>
+
     <Heading>All Repos-{repos.length}</Heading>
   </Center>
         {
@@ -84,6 +103,7 @@ export default function SimpleCard({img,name,repos,handleShow}){
               {
                 item.language==null?"":<Button bg='tomato'>{item.language}</Button>
               }
+            
 
              </Box>
            <br />

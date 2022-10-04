@@ -6,7 +6,7 @@ import SimpleCard from "./SimpleCard";
 import { SearchGIF } from "./AddGif";
 //import Feature from "./ChakraCard.jsx";
 import axios from "axios";
-import {Box, Input, Wrap, WrapItem} from "@chakra-ui/react"
+import {Avatar, AvatarGroup, Box, Input, Wrap, WrapItem} from "@chakra-ui/react"
 import { Center,Button,SimpleGrid } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
 
@@ -20,7 +20,7 @@ import { useColorMode } from "@chakra-ui/react";
      const [isLoading,setIsLoading]=useState(true);
     const [users,setUsers] = useState([]);
     const [repos,setRepos]=useState([]);
-
+      const [followers,setFollowers]=useState([]);
     useEffect(()=>{
         document.title="Github Search Application"
     })
@@ -55,8 +55,11 @@ const handleSearch=()=>{
 const handleShow= async (item)=>{
     try {
         const {data: response} = await axios.get(item.repos_url);
+        const {data:gettingfollowers} = await axios.get(item.followers_url)
         setRepos(response);
-        console.log(response)
+        setFollowers(gettingfollowers);
+        console.log(followers)
+        //console.log(response)
       } catch (error) {
         console.error(error.message);
       }
@@ -92,6 +95,8 @@ return(
             
              Search
         </Button>
+        <br />
+       
     </div>
    
    </Center>
@@ -116,6 +121,8 @@ return(
          name={item.login}
          repos={repos}
          handleShow={handleShow}
+         followers={followers}
+         url ={item.html_url}
          />}
          </Box> 
       
