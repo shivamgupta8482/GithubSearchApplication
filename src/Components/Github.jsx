@@ -91,7 +91,7 @@ return(
         placeholder="search"
         />
         {console.log(users)}
-        <Button mt="-5px" colorScheme='red' onClick={handleSearch}>
+        <Button mt="-5px" colorScheme='orange' onClick={handleSearch}>
             
              Search
         </Button>
