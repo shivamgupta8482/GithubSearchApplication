@@ -90,7 +90,7 @@ return(
         onChange={(e)=>setQuery(e.target.value)}
         placeholder="search"
         />
-        {console.log(users)}
+        {/* {console.log(users)} */}
         <Button mt="-5px" colorScheme='orange' onClick={handleSearch}>
             
              Search
